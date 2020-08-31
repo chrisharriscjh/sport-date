@@ -11,6 +11,5 @@ object Skeleton {
   trait IsDateRange[DateT] {
     def toList: List[DateT]
     def length: Int
-    def fromStartEnd(start: DateT, end: DateT): IsDateRange[DateT]
   }
 }
