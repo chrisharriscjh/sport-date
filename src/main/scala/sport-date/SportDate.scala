@@ -8,11 +8,11 @@ object IsSportDateInstances {
     new IsSportDate[DateTime] {
       def nextDay(d: DateTime): DateTime = d + 1.days
       def nextBDay(d: DateTime): DateTime  = nextDay(d) match {
-        case d if d.getDayOfWeek > 5 => nextDay(d)
+        case d if d.getDayOfWeek > 5 => nextBDay(d)
         case d => d
       }
       def toBDay(d: DateTime): DateTime = d match {
-        case d if d.getDayOfWeek > 5 => nextDay(d)
+        case d if d.getDayOfWeek > 5 => nextBDay(d)
         case d => d
       }
     }

@@ -6,7 +6,7 @@ import IsSportDateSyntax._
 
 case class BDateRange[DateT] (
   start: DateT,
-  numDates: Option[Integer],
+  numDates: Option[Int],
   end: Option[DateT],
 )(implicit sportDateTc: IsSportDate[DateT]) extends IsDateRange[DateT] {
   lazy val toList: List[DateT] = this match {
@@ -34,10 +34,10 @@ object BDateRange {
   def fromStartEnd[DateT](start: DateT, end: DateT)(
     implicit tc: IsSportDate[DateT]) = 
     BDateRange(start, None, Some(end))
-  def fromStartNum[DateT](start: DateT, numDates: Integer)(
+  def fromStartNum[DateT](start: DateT, numDates: Int)(
     implicit tc: IsSportDate[DateT]) = 
     BDateRange(start, Some(numDates), None)
-  def fromStartNumEnd[DateT](start: DateT, numDates: Integer, end: DateT)(
+  def fromStartNumEnd[DateT](start: DateT, numDates: Int, end: DateT)(
     implicit tc: IsSportDate[DateT]) = 
     BDateRange(start, Some(numDates), Some(end))
 }
