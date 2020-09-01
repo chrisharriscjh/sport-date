@@ -1,7 +1,6 @@
 package sportdate
 
 import com.github.nscala_time.time.Imports._
-import Skeleton.IsSportDate
 
 object IsSportDateInstances {
   implicit val nScalaTimeDate: IsSportDate[DateTime] = 

@@ -1,6 +1,5 @@
 package sportdate
 
-import Skeleton.{IsSportDate, IsDateRange}
 import IsSportDateInstances._
 import IsSportDateSyntax._
 
