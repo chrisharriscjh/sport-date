@@ -1,6 +1,6 @@
 ## SportDate
 
-A small but logical package for working with business-day-aware dates in Scala.
+A small but perfectly formed package for working with business-day-aware dates in Scala.
 
 **Provides -**
 - a typeclass `IsSportDate` for representing date that can be easily converted to business (week-day) dates
