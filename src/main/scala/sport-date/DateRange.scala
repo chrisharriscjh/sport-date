@@ -13,26 +13,18 @@ case class DateRange[D] (
     start :: DateRange(e0.advanceDays(start, 1), end).days
   }
   def bDays: List[D] = if(e1.gt(start,end)) {Nil} else {
-    PROBLEM HERE
     val nxt = start.toBDay
     nxt :: DateRange(nxt.nextBDay, end).bDays
-  }  
+  }
   def numDays: Int = days.length
   def numBDays: Int = bDays.length
 }
 object DateRange {
-  def fromStartEnd[D: IsSportDate](start: D, end: D): DateRange[D] = 
+  def fromStartEnd[D](start: D, end: D) (implicit
+    e0: IsSportDate[D],
+    e1: Ordering[D],
+  ): DateRange[D] = 
     DateRange[D](start, end)
-  def fromStartNumDays[D: IsSportDate](start: D, numDays: Int): DateRange[D] = if(numDays == 0) {
-    DateRange(start, end)
-  } else {
-    start :: DateRange[D](start.nextDay, end).days
-  }
-
-  //def fromStartNumDays[DateT](start: DateT, numDays: Int)(
-    //implicit tc: IsSportDate[DateT]) = 
-    //DateRange(start, Some(length), None)
-  ////def fromLengthEnd[DateT](length: Int
 }
 
 //case class BasicDateRange[DateT] (

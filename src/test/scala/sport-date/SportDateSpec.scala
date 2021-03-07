@@ -8,7 +8,7 @@ import SportDate._
 import IsSportDateSyntax._
 import IsSportDateInstances._
 
-class DateSpec extends AnyFlatSpec with Matchers {
+class SportDateSpec extends AnyFlatSpec with Matchers {
   "nextBDay" should "advance one day if weekday" in {
     assert(SportDate.YMD(2020,8,3).nextBDay == SportDate.YMD(2020,8,4))
   }
