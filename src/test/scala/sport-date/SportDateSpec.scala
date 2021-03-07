@@ -2,7 +2,9 @@ package sportdate
 
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
+import com.github.nscala_time.time.Imports._
 
+import SportDate._
 import IsSportDateSyntax._
 import IsSportDateInstances._
 

@@ -3,7 +3,7 @@ package sportdate
 import com.github.nscala_time.time.Imports._
 
 object IsSportDateInstances {
-  implicit val nScalaTimeDate: IsSportDate[DateTime] = 
+  implicit val dateTimeIsSportDate: IsSportDate[DateTime] = 
     new IsSportDate[DateTime] {
       def nextDay(d: DateTime): DateTime = d + 1.days
       def nextBDay(d: DateTime): DateTime  = nextDay(d) match {
