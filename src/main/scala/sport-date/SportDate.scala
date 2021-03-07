@@ -2,30 +2,33 @@ package sportdate
 
 import com.github.nscala_time.time.Imports._
 
+abstract class IsSportDate[A] extends IsSportDateBase[A] {self =>
+  def isBDay(value: A): Boolean
+  def advanceDays(value: A, numDays: Int): A
+  def prevBDay(value: A): A = advanceDays(value, -1) match {
+    case d if isBDay(d) => d
+    case d => prevBDay(d)
+  }
+  def nextBDay(value: A): A = advanceDays(value, 1) match {
+    case d if isBDay(d) => d
+    case d => nextBDay(d)
+  }
+  def toBDay(value: A): A = value match {
+    case d if isBDay(d) => d
+    case d => nextBDay(d)
+  }
+}
+
 object IsSportDateInstances {
   implicit val dateTimeIsSportDate: IsSportDate[DateTime] = 
     new IsSportDate[DateTime] {
-      def prevDay(d: DateTime): DateTime = d - 1.days
-      def prevBDay(d: DateTime): DateTime = prevDay(d) match {
-        case d if d.getDayOfWeek > 5 => prevBDay(d)
-        case d => d
-      }
-      def nextDay(d: DateTime): DateTime = d + 1.days
-      def nextBDay(d: DateTime): DateTime  = nextDay(d) match {
-        case d if d.getDayOfWeek > 5 => nextBDay(d)
-        case d => d
-      }
-      def toBDay(d: DateTime): DateTime = d match {
-        case d if d.getDayOfWeek > 5 => nextBDay(d)
-        case d => d
-      }
+      def isBDay(value: DateTime): Boolean = (value.getDayOfWeek <= 5)
+      def advanceDays(value: DateTime, numDays: Int): DateTime = value + numDays.days
     }
 }
 
 object IsSportDateSyntax {
   implicit class IsSportDateOps[A](value: A) {
-    def nextDay(implicit dateTCInstance: IsSportDate[A]): A = 
-      dateTCInstance.nextDay(value)
     def nextBDay(implicit dateTCInstance: IsSportDate[A]): A = 
       dateTCInstance.nextBDay(value)
     def toBDay(implicit dateTCInstance: IsSportDate[A]): A = 

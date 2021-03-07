@@ -1,9 +1,9 @@
 package sportdate
 
-trait IsSportDate[A] {
-  def prevDay(value: A): A
+trait IsSportDateBase[A] {
+  def isBDay(value: A): Boolean
+  def advanceDays(value: A, numDays: Int): A
   def prevBDay(value: A): A
-  def nextDay(value: A): A
   def nextBDay(value: A): A
   def toBDay(value: A): A
 }
